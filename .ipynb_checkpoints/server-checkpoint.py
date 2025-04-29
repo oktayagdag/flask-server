@@ -33,22 +33,20 @@
    "metadata": {},
    "outputs": [],
    "source": [
+    "# server.py\n",
+    "\n",
+    "from flask import Flask, jsonify\n",
     "import os\n",
-    "from flask import Flask, request, jsonify\n",
     "\n",
     "app = Flask(__name__)\n",
     "\n",
-    "@app.route('/process', methods=['POST'])\n",
-    "def process_data():\n",
-    "    data = request.get_json()\n",
-    "    input_value = data.get('input')\n",
-    "    processed_value = input_value.upper()\n",
-    "    return jsonify({\"result\": processed_value})\n",
+    "@app.route('/greet', methods=['GET'])\n",
+    "def greet():\n",
+    "    return jsonify({\"message\": \"Merhaba Oktay!\"})\n",
     "\n",
     "if __name__ == '__main__':\n",
-    "    port = int(os.environ.get('PORT', 5000))\n",
-    "    app.run(host='0.0.0.0', port=port)\n",
-    "\n"
+    "    port = int(os.environ.get(\"PORT\", 5000))  # Render PORT kullanımı\n",
+    "    app.run(host='0.0.0.0', port=port)\n"
    ]
   },
   {
